@@ -1,14 +1,16 @@
 import React from "react";
-import "./Registration.css";
+import "./style.css";
 import { Button } from "react-bootstrap";
 import { useState } from "react";
 import moment from "moment";
+import 'moment/locale/vi';
 
 
 const Registration = () => {
-  const [total, setTotal] = useState(0);
-  const [speed, setSpeed] = useState(0);
-  const [time, setTime] = useState(null);
+  moment.locale('vi');
+  const [total, setTotal] = useState(500);
+  const [speed, setSpeed] = useState(50);
+  const [time, setTime] = useState("00:00");
   const [date, setDate] = useState(null);
   const [timeEnd, setTimeEnd] = useState("");
   const handleSubmit = (e) => {
@@ -21,9 +23,11 @@ const Registration = () => {
       var timeData = moment(date).set({hour: hour, minute});
  
       timeData.add(total / speed * 60, 'minutes')
+
     
-      console.log("timeData ", timeData.format("DD/MM/YYYY hh:mm"))
-      setTimeEnd(timeData.format("hh:mm DD/MM/YYYY"))
+      console.log("timeData ", timeData.format("LLLL"));
+      setTimeEnd(timeData.format("LLLL"));
+      console.log(timeData.calendar())
     }
   };
 
@@ -45,7 +49,7 @@ const Registration = () => {
                       <div className="row mt-3">
                         <div className="col text-left">
                           <label htmlFor="first" className="form-label">
-                            Tổng thể tích (mL)
+                            Thể tích (mL)
                           </label>
                           <input
                             type="number"
@@ -80,7 +84,7 @@ const Registration = () => {
                         <h5 htmlFor="first" className="form-label">
                         Thời gian bắt đầu truyền
                         </h5>
-                        <div className="col text-left">
+                        <div className="col-4 text-left">
                 
                           <input
                             className="form-control"
