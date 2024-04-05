@@ -31,16 +31,17 @@ const Registration = () => {
   return (
     <div>
       <section
-        className="p-5 w-70"
-        style={{ backgroundColor: "#eee", borderRadius: ".5rem .5rem 0 0" }}
+        className="p-5 w-100"
+        style={{  borderRadius: ".5rem .5rem 0 0" }}
       >
         <div className="row">
+ 
           <div className="col-12">
             <div className="card text-black" style={{ borderRadius: "25px" }}>
               <div className="card-body p-md-5">
                 <div className="row justify-content-center">
                   <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-                    <p className="text-center h1 fw-bold mb-5 mt-4">Công cụ tính toán</p>
+                   
                     <form onSubmit={handleSubmit}>
                       <div className="row mt-3">
                         <h5 htmlFor="first" className="form-label">Thiết lập ban đầu </h5>
@@ -55,6 +56,7 @@ const Registration = () => {
                             onChange={(e) => {
                               setTotal(e.target.value)
                             }}
+                            min={0}
                           />
                         </div>
                         <div className="col text-left">
@@ -68,6 +70,7 @@ const Registration = () => {
                             onChange={(e)=>{
                               setSpeed(e.target.value)
                             }}
+                            min={0}
                           />
                           
                         </div>
@@ -88,7 +91,6 @@ const Registration = () => {
                         <div className="col text-left">
                 
                           <input
-                   
                             className="form-control"
                             type="time"
                             min="00:00" max="23:59"
@@ -123,9 +125,9 @@ const Registration = () => {
                     </form>
                   </div>
                   <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-                   <table className="table">
-                            <thead className="thead-dark">
-                              <tr>
+                   <table className="table table-striped table-bordered table-hover">
+                            <thead>
+                              <tr className="table-active">
                                 <th  scope="col">Tên</th>
                                 <th  scope="col">Chỉ số</th>
                               </tr>
@@ -139,7 +141,7 @@ const Registration = () => {
                                 <th scope="row">Tốc độ truyền</th>
                                 <td>{speed} ({unit})</td>
                               </tr>
-                              <tr>
+                              <tr className="table-success">
                                 <th scope="row">Thời gian kết thúc</th>
                                 <td>{timeEnd}</td>
                               </tr>
