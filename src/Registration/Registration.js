@@ -8,7 +8,6 @@ import moment from "moment";
 const Registration = () => {
   const [total, setTotal] = useState(0);
   const [speed, setSpeed] = useState(0);
-  const [unit, setUnit] = useState("ml/h");
   const [time, setTime] = useState(null);
   const [date, setDate] = useState(null);
   const [timeEnd, setTimeEnd] = useState("");
@@ -44,7 +43,6 @@ const Registration = () => {
                    
                     <form onSubmit={handleSubmit}>
                       <div className="row mt-3">
-                        <h5 htmlFor="first" className="form-label">Thiết lập ban đầu </h5>
                         <div className="col text-left">
                           <label htmlFor="first" className="form-label">
                             Tổng thể tích (mL)
@@ -57,11 +55,12 @@ const Registration = () => {
                               setTotal(e.target.value)
                             }}
                             min={0}
+                            required
                           />
                         </div>
                         <div className="col text-left">
                           <label htmlFor="last`" className="form-label">
-                            Tốc độ
+                            Tốc độ (mL/h)
                           </label>
                           <input
                              type="number"
@@ -71,18 +70,11 @@ const Registration = () => {
                               setSpeed(e.target.value)
                             }}
                             min={0}
+                            required
                           />
                           
                         </div>
-                        <div className="col text-left">
-                          <label htmlFor="last`" className="form-label">
-                            Đơn vị
-                          </label>
-                          <select value={unit} onChange={(e)=>{setUnit(e.target.value)}} name="unit"  className="form-control">
-                            <option value="mL/h">mL/h</option>
-                          </select>
-                          
-                        </div>
+              
                       </div>
                       <div className="row mt-3">
                         <h5 htmlFor="first" className="form-label">
@@ -96,6 +88,7 @@ const Registration = () => {
                             min="00:00" max="23:59"
                             value={time}
                             onChange={(e)=>{setTime(e.target.value)}}
+                            required
                           />
                         
                         </div>
@@ -105,6 +98,7 @@ const Registration = () => {
                             type="date"
                             value={date}
                             onChange={(e)=>{setDate(e.target.value)}}
+                            required
                           />
                         
                         </div>
@@ -139,7 +133,7 @@ const Registration = () => {
                               </tr>
                               <tr>
                                 <th scope="row">Tốc độ truyền</th>
-                                <td>{speed} ({unit})</td>
+                                <td>{speed} (mL/h)</td>
                               </tr>
                               <tr className="table-success">
                                 <th scope="row">Thời gian kết thúc</th>
