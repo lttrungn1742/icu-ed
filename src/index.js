@@ -1,16 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import Registration from "./tool/Main";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom/client';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
+import Main from './component/Main/Main';
+import theme from './theme';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const rootElement = document.getElementById('root');
+const root = ReactDOM.createRoot(rootElement);
+
 root.render(
-  <React.StrictMode>
-    <div className="App">
-          <Registration />
-    </div>
-  </React.StrictMode>
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <Main/>
+  </ThemeProvider>,
 );
-
-
