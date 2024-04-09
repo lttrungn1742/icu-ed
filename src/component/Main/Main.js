@@ -1,4 +1,4 @@
-import { Paper, TextField } from "@mui/material";
+import { Paper, TextField, Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import React, { useState } from "react";
 import moment from "moment";
@@ -16,133 +16,136 @@ const Main = () => {
   const [data, setData] = useState({
     total: null,
     speed: null,
-    time: "00:00",
+    time: moment().format("HH:mm"),
     start: moment().format("YYYY-MM-DD"),
     end: null,
   });
 
   const Cal = (e) => {
     e.preventDefault();
-      const [hour, minute] = data.time.split(":");
-      var timeData = moment(data.date).set({ hour: hour, minute });
-      timeData.add((total / speed) * 60, "minutes");
-      setData({ ...data, end: timeData.format("LLLL") });
-    
+    const [hour, minute] = data.time.split(":");
+    var timeData = moment(data.date).set({ hour: hour, minute });
+    timeData.add((data.total / data.speed) * 60, "minutes");
+    setData({ ...data, end: timeData.format("HH:mm - DD/MM/YYYY") });
+
   };
 
   return (
-    <Grid container spacing={2}>
-      <Grid xs={6}>
-        <Paper>
-          <form onSubmit={Cal}>
-            <Grid xs={12}>
-              <TextField
-                label="Thể tích (mL)"
-                name={data.total}
-                value={data.total}
-                type="number"
-                inputProps={{ min: 0 }}
-                fullWidth
-                variant="standard"
-                helperText="Tổng thể tích"
-                onChange={(e) => {
-                  setData({ ...data, total: parseInt(e.target.value) });
-                }}
-                required
-              />
-            </Grid>
-            <Grid xs={12}>
-              <TextField
-                label="Tốc độ (mL/h)"
-                name={data.speed}
-                value={data.speed}
-                type="number"
-                inputProps={{ min: 0 }}
-                fullWidth
-                variant="standard"
-                helperText="Tốc độ truyền dịch"
-                onChange={(e) => {
-                  setData({ ...data, speed: e.target.value });
-                }}
-                required
-              />
-            </Grid>
-            <Grid container xs={12} spacing={2}>
-              <Grid xs={5}>
+    <Box width="90%" margin="auto" marginTop="3%" >
+      <Grid container spacing={2}>
+        <Grid xs={6}>
+          <Paper>
+            <form onSubmit={Cal}>
+              <Grid xs={12}>
                 <TextField
-                  label="Thời gian bắt đầu truyền"
-                  name={data.time}
-                  value={data.time}
-                  type="time"
+                  label="Thể tích (mL)"
+                  name={data.total}
+                  value={data.total}
+                  type="number"
+                  inputProps={{ min: 0 }}
                   fullWidth
                   variant="standard"
+                  helperText="Tổng thể tích"
                   onChange={(e) => {
-                    setData({ ...data, time: e.target.value });
+                    setData({ ...data, total: parseInt(e.target.value) });
                   }}
                   required
                 />
               </Grid>
-              <Grid xs={7}>
+              <Grid xs={12}>
                 <TextField
-                  label="Ngày"
-                  name={data.start}
-                  value={data.start}
-                  type="date"
+                  label="Tốc độ (mL/h)"
+                  name={data.speed}
+                  value={data.speed}
+                  type="number"
+                  inputProps={{ min: 0 }}
                   fullWidth
                   variant="standard"
+                  helperText="Tốc độ truyền dịch"
                   onChange={(e) => {
-                    setData({ ...data, date: e.target.value });
+                    setData({ ...data, speed: e.target.value });
                   }}
                   required
                 />
               </Grid>
-            </Grid>
-            <Grid xs={12}>
-            <Button variant="contained" type="submit">Tính Toán</Button>
-            </Grid>
-          </form>
-        </Paper>
+              <Grid container xs={12} spacing={2}>
+                <Grid xs={5}>
+                  <TextField
+                    label="Thời gian bắt đầu truyền"
+                    name={data.time}
+                    value={data.time}
+                    type="time"
+                    fullWidth
+                    variant="standard"
+                    onChange={(e) => {
+                      setData({ ...data, time: e.target.value });
+                    }}
+                    required
+                  />
+                </Grid>
+                <Grid xs={7}>
+                  <TextField
+                    label="Ngày"
+                    name={data.start}
+                    value={data.start}
+                    type="date"
+                    fullWidth
+                    variant="standard"
+                    onChange={(e) => {
+                      setData({ ...data, date: e.target.value });
+                    }}
+                    required
+                  />
+                </Grid>
+              </Grid>
+              <Grid xs={12}>
+                <Button variant="contained" type="submit">Tính Toán</Button>
+              </Grid>
+            </form>
+          </Paper>
+        </Grid>
+        <Grid xs={6}>
+          <TableContainer component={Paper}>
+            <Table  aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Tên</TableCell>
+                  <TableCell align="right">Chỉ số</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    Tổng thể tích
+                  </TableCell>
+                  <TableCell align="right">{data.total} (mL)</TableCell>
+                </TableRow>
+                <TableRow
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    Tốc độ
+                  </TableCell>
+                  <TableCell align="right">{data.speed} (mL/h)</TableCell>
+                </TableRow>
+                <TableRow
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  style={{ backgroundColor: "rgba(0, 128, 0, 0.2)" }}
+                >
+                  <TableCell component="th" scope="row">
+                   Ngày kết thúc truyền dịch
+                  </TableCell>
+                  <TableCell align="right">{data.end}</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
       </Grid>
-      <Grid xs={6}>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Tên</TableCell>
-                <TableCell align="right">Chỉ số</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  Tổng thể tích
-                </TableCell>
-                <TableCell align="right">{data.total} (mL)</TableCell>
-              </TableRow>
-              <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  Tốc độ
-                </TableCell>
-                <TableCell align="right">{data.speed} (mL/h)</TableCell>
-              </TableRow>
-              <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                style={{ backgroundColor: "rgba(0, 128, 0, 0.2)" }}
-              >
-                <TableCell component="th" scope="row">
-                  Ngày kết thúc truyền dịch
-                </TableCell>
-                <TableCell align="right">{data.end}</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Grid>
-    </Grid>
+    </Box>
+
   );
 };
 
