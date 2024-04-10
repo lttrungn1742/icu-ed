@@ -47,7 +47,7 @@ const _Date = () => {
                                 inputProps={{ min: 0 }}
                                 fullWidth
                                 variant="standard"
-                                helperText="Tổng thể tích"
+                    
                                 onChange={(e) => {
                                     setData({ ...data, total: parseInt(e.target.value) });
                                 }}
@@ -63,7 +63,7 @@ const _Date = () => {
                                 inputProps={{ min: 0 }}
                                 fullWidth
                                 variant="standard"
-                                helperText="Tốc độ truyền dịch"
+                         
                                 onChange={(e) => {
                                     setData({ ...data, speed: e.target.value });
                                 }}
