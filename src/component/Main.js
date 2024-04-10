@@ -13,7 +13,7 @@ const Main = () => {
   const [value, setValue] = React.useState(0);
 
   return (
-    <Box width="50%" margin="auto">
+    <Box width="80%" margin="auto">
        <BottomNavigation
         showLabels
         value={value}
