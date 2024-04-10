@@ -82,7 +82,7 @@ const Volumn = () => {
                                     required
                                 />
                             </Grid>
-                            <Grid xs={5} marginRight="3%">
+                            <Grid xs={5}>
                                 <TextField
                                     label="Ngày"
                                     name={data.start}

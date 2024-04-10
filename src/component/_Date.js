@@ -78,21 +78,21 @@ const _Date = () => {
                                     value={data.time}
                                     type="time"
                                     fullWidth
-
+                                    variant="standard"
                                     onChange={(e) => {
                                         setData({ ...data, time: e.target.value });
                                     }}
                                     required
                                 />
                             </Grid>
-                            <Grid xs={5} marginRight="3%">
+                            <Grid xs={5} >
                                 <TextField
                                     label="Ngày"
                                     name={data.start}
                                     value={data.start}
                                     type="date"
                                     fullWidth
-
+                                    variant="standard"
                                     onChange={(e) => {
                                         setData({ ...data, start: e.target.value });
                                     }}
