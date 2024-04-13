@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Paper, TextField, Box, Stack, Typography } from "@mui/material";
+import { Paper, TextField, Box, Stack, Typography, FormControl, InputLabel, FilledInput } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
 import moment from "moment";
@@ -19,8 +19,8 @@ const _Date = () => {
         speed: null,
         time: null, // moment().format("HH:mm")
         start: null, // moment().format("YYYY-MM-DD")
-        // _time: null,
-        // end: null,
+        _time: null,
+        end: null,
         give: null,
         remail: null
     });
@@ -72,7 +72,7 @@ const _Date = () => {
                         </Grid>
                         <Grid container marginTop="2%" xs={12} spacing={2} >
                             <Grid xs={5} marginLeft="3%" >
-                                <TextField
+                                {/* <TextField
                                     label="Thời gian bắt đầu truyền"
                                     name={data.time}
                                     value={data.time}
@@ -83,7 +83,15 @@ const _Date = () => {
                                         setData({ ...data, time: e.target.value });
                                     }}
                                     required
-                                />
+                                /> */}
+
+<FormControl fullWidth sx={{ m: 1 }} variant="filled">
+          <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
+          <FilledInput
+            id="filled-adornment-amount"
+            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+          />
+        </FormControl>
                             </Grid>
                             <Grid xs={5} >
                                 <TextField
@@ -100,7 +108,36 @@ const _Date = () => {
                                 />
                             </Grid>
                         </Grid>
-
+                        <Grid container marginTop="2%" xs={12} spacing={2} >
+                            <Grid xs={5} marginLeft="3%" >
+                                <TextField
+                                    label="Thời gian kết thúc truyền"
+                                    name={data._time}
+                                    value={data._time}
+                                    type="time"
+                                    fullWidth
+                                    variant="standard"
+                                    onChange={(e) => {
+                                        setData({ ...data, time: e.target.value });
+                                    }}
+                                    required
+                                />
+                            </Grid>
+                            <Grid xs={5} >
+                                <TextField
+                                    label="Ngày"
+                                    name={data.end}
+                                    value={data.end}
+                                    type="date"
+                                    fullWidth
+                                    variant="standard"
+                                    onChange={(e) => {
+                                        setData({ ...data, start: e.target.value });
+                                    }}
+                                    required
+                                />
+                            </Grid>
+                        </Grid>
                         <Grid marginTop="2%" marginLeft="40%" marginBottom="2%" >
                             <Button variant="contained" type="submit" >Tính Toán</Button>
                         </Grid>
