@@ -15,7 +15,7 @@ import Button from '@mui/material/Button';
 const Volumn = () => {
     moment.locale("vi");
     const [data, setData] = useState({
-        total: null,
+        total: ("0.00"),
         speed: null,
         time: moment().format("HH:mm"),
         start: moment().format("YYYY-MM-DD"),
@@ -26,7 +26,7 @@ const Volumn = () => {
         e.preventDefault();
         const [hour, minute] = data.time.split(":");
         var timeData = moment(data.start).set({ hour: hour, minute });
-        timeData.add((data.total / data.speed) * 60, "minutes");
+        timeData.add((parseFloat(data.total) / data.speed) * 60, "minutes");
         setData({ ...data, end: timeData.format("HH:mm - DD/MM/YYYY") });
 
     };
@@ -40,15 +40,14 @@ const Volumn = () => {
                                 label="Thể tích (mL)"
                                 name={data.total}
                                 value={data.total}
-                                type="number"
-                                inputProps={{ min: 0 }}
                                 fullWidth
                                 variant="standard"
                        
                                 onChange={(e) => {
-                                    setData({ ...data, total: parseInt(e.target.value) });
+                                    setData({ ...data, total: e.target.value });
                                 }}
                                 required
+                             
                             />
                         </Grid>
                         <Grid marginLeft="3%" marginTop="2%" marginRight="3%">
