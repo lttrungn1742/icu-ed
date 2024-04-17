@@ -22,8 +22,8 @@ const Main = () => {
           setValue(newValue);
         }}
       >
-        <BottomNavigationAction label="Theo thể tích" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Theo ngày" icon={<DateRangeIcon />} />
+        <BottomNavigationAction label="Thời gian" icon={<RestoreIcon />} />
+        <BottomNavigationAction label="Thể tích kết thúc" icon={<DateRangeIcon />} />
       </BottomNavigation>
       <div hidden={value != 0}>
         <Volumn/>
