@@ -5,8 +5,8 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import RestoreIcon from '@mui/icons-material/Restore';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import { Box } from "@mui/material";
-import Volumn from "./Volumn";
 import _Date from "./_Date";
+import _Volumn from "./_Volumn";
 
 const Main = () => {
 
@@ -26,10 +26,10 @@ const Main = () => {
         <BottomNavigationAction label="Thể tích kết thúc" icon={<DateRangeIcon />} />
       </BottomNavigation>
       <div hidden={value != 0}>
-        <Volumn/>
+        <_Date/>
       </div>
       <div hidden={value != 1}>
-        <_Date/>
+        <_Volumn/>
       </div>
     </Box>
 
