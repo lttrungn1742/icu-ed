@@ -23,7 +23,7 @@ const Main = () => {
         }}
       >
         <BottomNavigationAction label="Thời gian" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Thể tích kết thúc" icon={<DateRangeIcon />} />
+        <BottomNavigationAction label="Thể tích" icon={<DateRangeIcon />} />
       </BottomNavigation>
       <div hidden={value != 0}>
         <_Date/>

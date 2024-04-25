@@ -126,7 +126,7 @@ const _Date = () => {
                                 style={{ backgroundColor: "rgba(0, 128, 0, 0.2)" }}
                             >
                                 <TableCell component="th" scope="row">
-                                    Ngày kết thúc truyền dịch
+                                    Ngày giờ kết thúc truyền dịch
                                 </TableCell>
                                 <TableCell align="right">
                                     <Typography variant="h4">
